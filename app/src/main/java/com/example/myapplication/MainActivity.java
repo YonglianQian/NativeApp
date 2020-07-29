@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCenter.start(getApplication(), "9366e590f97ab4124d6f84bea023d7fb238157ee", Analytics.class, Crashes.class);
+        AppCenter.start(getApplication(), "e7b84169-0750-412e-834f-eeccf1ce9b54", Analytics.class, Crashes.class);
 
         Crashes.generateTestCrash();
 

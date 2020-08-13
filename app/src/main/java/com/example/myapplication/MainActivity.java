@@ -21,15 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         AppCenter.start(getApplication(), "e7b84169-0750-412e-834f-eeccf1ce9b54", Analytics.class, Crashes.class, Distribute.class);
         AppCenter.setLogLevel(Log.VERBOSE);
-
         //Crashes.generateTestCrash();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        // Example of a call to a native method
-        TextView tv = findViewById(R.id.sample_text);
+         TextView tv=new TextView(this);
         tv.setText(stringFromJNI());
+
+        setContentView(tv);
+
     }
 
     /**

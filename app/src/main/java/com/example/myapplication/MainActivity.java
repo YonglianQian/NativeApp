@@ -3,11 +3,14 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
+import com.microsoft.appcenter.distribute.Distribute;
+import com.microsoft.appcenter.utils.async.AppCenterConsumer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,13 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCenter.start(getApplication(), "e7b84169-0750-412e-834f-eeccf1ce9b54", Analytics.class, Crashes.class);
+        AppCenter.start(getApplication(), "e7b84169-0750-412e-834f-eeccf1ce9b54", Analytics.class, Crashes.class, Distribute.class);
+        AppCenter.setLogLevel(Log.VERBOSE);
 
-        Crashes.generateTestCrash();
-
+        //Crashes.generateTestCrash();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Example of a call to a native method
         TextView tv = findViewById(R.id.sample_text);
         tv.setText(stringFromJNI());

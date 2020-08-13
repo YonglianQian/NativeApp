@@ -5,6 +5,6 @@ extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_myapplication_MainActivity_stringFromJNI(
         JNIEnv* env,
         jobject /* this */) {
-    std::string hello = "Hello, Abraham Qian";
+    std::string hello = "Hello, World from C++";
     return env->NewStringUTF(hello.c_str());
 }

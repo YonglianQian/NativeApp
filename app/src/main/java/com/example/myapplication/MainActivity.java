@@ -12,22 +12,33 @@ import com.microsoft.appcenter.crashes.Crashes;
 import com.microsoft.appcenter.distribute.Distribute;
 import com.microsoft.appcenter.utils.async.AppCenterConsumer;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
-    // Used to load the 'native-lib' library on application startup.
+static {
+System.loadLibrary("mylib");
+}
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        AppCenter.start(getApplication(), "e7b84169-0750-412e-834f-eeccf1ce9b54", Analytics.class, Crashes.class, Distribute.class);
         AppCenter.setLogLevel(Log.VERBOSE);
-        //Crashes.generateTestCrash();
+        AppCenter.start(getApplication(), "e7b84169-0750-412e-834f-eeccf1ce9b54", Analytics.class, Crashes.class, Distribute.class);
+
+
+SimpleDateFormat sdf=new SimpleDateFormat();
+sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");
+Date d=new Date();
+Analytics.trackEvent("button is clicked at "+sdf.format(d));
+
+
         TextView tv=new TextView(this);
-        tv.setText("Hello, World");
+        tv.setText(stringFromJNI());
         setContentView(tv);
     }
 
-
+public native String stringFromJNI();
 }
